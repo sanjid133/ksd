@@ -1,9 +1,0 @@
-package: github.com/sanjid133/ksd
-import:
-- package: github.com/appscode/go
-  subpackages:
-  - analytics
-  - log/golog
-  - version
-- package: github.com/spf13/cobra
-- package: github.com/spf13/pflag

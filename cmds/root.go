@@ -1,25 +1,21 @@
 package cmds
 
 import (
-	"flag"
-	"io"
-	"log"
 	"os"
-	"strings"
 
-	"github.com/appscode/go/analytics"
-	v "github.com/appscode/go/version"
-	"github.com/jpillora/go-ogle-analytics"
 	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
+	genericapiserver "k8s.io/apiserver/pkg/server"
 )
-
 
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-
+		Use:               "ksd",
+		Short:             "Kubernetes secret database",
+		DisableAutoGenTag: true,
 	}
 
+	stopCh := genericapiserver.SetupSignalHandler()
+	cmd.AddCommand(NewCmdRun(os.Stdout, os.Stderr, stopCh))
 
 	return cmd
 }
